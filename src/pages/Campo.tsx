@@ -14,6 +14,6 @@ export default function Campo() {
     }, () => {}, { enableHighAccuracy: true })
     return () => { if (w != null) navigator.geolocation.clearWatch(w) }
   }, [])
-  return <>{os.length === 0 && <div className="glass mut">Nenhuma O.S. ativa.</div>}
-    {os.map(o => <Link key={o.id} to={`/os/${o.id}`} style={{ textDecoration: 'none', color: 'inherit' }}><div className="glass"><span className="tag">{o.status}</span> <b>#{o.numero} {o.clientes?.razao_social}</b><div className="mut">{o.clientes?.endereco}</div><div>{o.relato_defeito}</div></div></Link>)}</>
+  return <>{os.length === 0 && <div className="card mut">Nenhuma O.S. ativa.</div>}
+    {os.map(o => <Link key={o.id} to={`/os/${o.id}`} style={{ textDecoration: 'none', color: 'inherit' }}><div className="card"><span className="tag">{o.status}</span> <b>#{o.numero} {o.clientes?.razao_social}</b><div className="mut">{o.clientes?.endereco}</div><div>{o.relato_defeito}</div></div></Link>)}</>
 }

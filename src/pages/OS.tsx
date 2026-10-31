@@ -46,17 +46,17 @@ export default function OS() {
   }
   const c = o.clientes || {}
   return <>
-    <div className="glass"><h2 style={{ margin: 0 }}>O.S. #{o.numero} <span className="tag">{o.status}</span></h2>
+    <div className="card"><h2 style={{ margin: 0 }}>O.S. #{o.numero} <span className="tag">{o.status}</span></h2>
       <div>{c.razao_social}</div><div className="mut">{c.endereco} · {c.telefone}</div>
       <div className="row" style={{ marginTop: 8 }}>
         {c.telefone && <a href={`https://wa.me/55${c.telefone.replace(/\D/g, '')}`} target="_blank"><button className="sec">WhatsApp</button></a>}
         {c.endereco && <a href={`https://waze.com/ul?q=${encodeURIComponent(c.endereco)}&navigate=yes`} target="_blank"><button className="sec">Ir com Waze</button></a>}
         {PROX[o.status] && <button onClick={avancar}>{PROX[o.status][1]}</button>}<button className="sec" onClick={pdf}>Baixar laudo PDF</button></div></div>
-    <div className="glass"><b>Relato</b><p>{o.relato_defeito}</p><b>Parecer técnico</b>
+    <div className="card"><b>Relato</b><p>{o.relato_defeito}</p><b>Parecer técnico</b>
       <textarea style={{ width: '100%', minHeight: 100 }} defaultValue={o.parecer_tecnico || ''} onBlur={e => upd({ parecer_tecnico: e.target.value })} /></div>
-    <div className="glass"><b>Peças</b>{pecas.map(x => <div key={x.id}>{x.quantidade}x {x.descricao}</div>)}
+    <div className="card"><b>Peças</b>{pecas.map(x => <div key={x.id}>{x.quantidade}x {x.descricao}</div>)}
       <div className="row" style={{ marginTop: 8 }}><input placeholder="Peça" value={p.descricao} onChange={e => setP({ ...p, descricao: e.target.value })} /><input type="number" min={1} style={{ width: 80 }} value={p.quantidade} onChange={e => setP({ ...p, quantidade: +e.target.value })} /><button onClick={addPeca}>Adicionar</button></div></div>
-    <div className="glass"><b>Assinaturas</b><div className="row" style={{ margin: '8px 0' }}>
+    <div className="card"><b>Assinaturas</b><div className="row" style={{ margin: '8px 0' }}>
       <button className="sec" onClick={() => setQuem('tecnico')}>{o.assinou_tecnico_em ? '✓ ' : ''}Técnico</button><button className="sec" onClick={() => setQuem('cliente')}>{o.assinou_cliente_em ? '✓ ' : ''}Cliente</button></div>
       {quem && <Assinatura onSave={salvarAss} />}</div>
   </>
